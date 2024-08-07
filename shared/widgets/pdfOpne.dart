@@ -2,9 +2,10 @@
 
 import 'dart:async';
 
-import 'package:cpsales/app/widgets/appbar_back.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_cached_pdfview/flutter_cached_pdfview.dart';
+
+import '../../app/widgets/appbar_back.dart';
 
 class PDFViewerFromUrl extends StatelessWidget {
   const PDFViewerFromUrl({Key? key, required this.url}) : super(key: key);
@@ -29,10 +30,8 @@ class PDFViewerFromUrl extends StatelessWidget {
 class PDFViewerFromAsset extends StatelessWidget {
   PDFViewerFromAsset({super.key, required this.pdfAssetPath});
   final String pdfAssetPath;
-  final Completer<PDFViewController> _pdfViewController =
-      Completer<PDFViewController>();
-  final StreamController<String> _pageCountController =
-      StreamController<String>();
+  final Completer<PDFViewController> _pdfViewController = Completer<PDFViewController>();
+  final StreamController<String> _pageCountController = StreamController<String>();
 
   @override
   Widget build(BuildContext context) {
@@ -64,8 +63,7 @@ class PDFViewerFromAsset extends StatelessWidget {
         swipeHorizontal: true,
         autoSpacing: false,
         pageFling: false,
-        onPageChanged: (int? current, int? total) =>
-            _pageCountController.add('${current! + 1} - $total'),
+        onPageChanged: (int? current, int? total) => _pageCountController.add('${current! + 1} - $total'),
         onViewCreated: (PDFViewController pdfViewController) async {
           _pdfViewController.complete(pdfViewController);
           final int currentPage = await pdfViewController.getCurrentPage() ?? 0;
@@ -89,8 +87,7 @@ class PDFViewerFromAsset extends StatelessWidget {
                   child: const Text('-'),
                   onPressed: () async {
                     final PDFViewController pdfController = snapshot.data!;
-                    final int currentPage =
-                        (await pdfController.getCurrentPage())! - 1;
+                    final int currentPage = (await pdfController.getCurrentPage())! - 1;
                     if (currentPage >= 0) {
                       await pdfController.setPage(currentPage);
                     }
@@ -101,10 +98,8 @@ class PDFViewerFromAsset extends StatelessWidget {
                   child: const Text('+'),
                   onPressed: () async {
                     final PDFViewController pdfController = snapshot.data!;
-                    final int currentPage =
-                        (await pdfController.getCurrentPage())! + 1;
-                    final int numberOfPages =
-                        await pdfController.getPageCount() ?? 0;
+                    final int currentPage = (await pdfController.getCurrentPage())! + 1;
+                    final int numberOfPages = await pdfController.getPageCount() ?? 0;
                     if (numberOfPages > currentPage) {
                       await pdfController.setPage(currentPage);
                     }

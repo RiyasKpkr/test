@@ -1,4 +1,5 @@
-
+import 'package:app/core/extensions/margin_ext.dart';
+import 'package:app/core/extensions/string_ext.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -8,8 +9,8 @@ import '../../core/screen_utils.dart';
 import '../../shared/utils/colors.dart';
 import '../../shared/widgets/app_text.dart';
 import '../../shared/widgets/app_text_field.dart';
-import '../model/prd_category.dart';
-import '../model/product.dart';
+
+import '../model/key_value.dart';
 import 'app_error_text.dart';
 
 class KeyValueSheet extends StatelessWidget {
@@ -26,7 +27,7 @@ class KeyValueSheet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final profile = Get.find<MainController>().profile.value;
+    // final profile = Get.find<MainController>().profile.value;
     return Column(children: [
       Padding(
         padding: const EdgeInsets.symmetric(vertical: 12.0),
@@ -80,12 +81,12 @@ class KeyValueSheet extends StatelessWidget {
                                 //
                                 const Spacer(),
 
-                                list[index].id == profile?.id
-                                    ? Container(
-                                        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
-                                        decoration: BoxDecoration(color: primaryClr.withOpacity(0.6), borderRadius: BorderRadius.circular(8)),
-                                        child: const AppText("Self Assign", family: inter500, size: 12, color: Colors.white))
-                                    : 0.hBox
+                                // list[index].id == profile?.id
+                                //     ? Container(
+                                //         padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+                                //         decoration: BoxDecoration(color: primaryClr.withOpacity(0.6), borderRadius: BorderRadius.circular(8)),
+                                //         child: const AppText("Self Assign", family: inter500, size: 12, color: Colors.white))
+                                //     : 0.hBox
                               ],
                             ),
                             onTap: () {

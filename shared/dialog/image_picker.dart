@@ -9,6 +9,7 @@ import '../../core/constants.dart';
 import '../../core/extensions/margin_ext.dart';
 
 import '../../core/screen_utils.dart';
+import '../utils/colors.dart';
 import '../widgets/app_svg.dart';
 import '../widgets/app_text.dart';
 
@@ -114,7 +115,7 @@ class ImageHandler {
     return await ImageCropper().cropImage(
       compressFormat: ImageCompressFormat.png,
       sourcePath: filePath,
-      aspectRatioPresets: [CropAspectRatioPreset.square],
+      // aspectRatioPresets: [CropAspectRatioPreset.square],
       aspectRatio: const CropAspectRatio(ratioX: 1.0, ratioY: 1.0),
       uiSettings: [
         AndroidUiSettings(

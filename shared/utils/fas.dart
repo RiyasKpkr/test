@@ -1,7 +1,5 @@
 import 'dart:io';
 
-import 'package:cpsales/core/screen_utils.dart';
-import 'package:cpsales/shared/dialog/app_snackbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:geocoding/geocoding.dart';
@@ -14,11 +12,11 @@ import 'package:share_plus/share_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../app/model/delivery_address.dart';
-import '../../app/model/quote.dart';
-import '../../app/model/quote_history.dart';
-import '../../core/config/config.dart';
+
 import 'package:pdf/widgets.dart' as pw;
 
+import '../../core/screen_utils.dart';
+import '../dialog/app_snackbar.dart';
 import '../widgets/app_cached_image.dart';
 import '../widgets/app_svg.dart';
 
@@ -32,8 +30,7 @@ Future<LatLng?> getCurrentLocation({bool isCheckPermission = true}) async {
     final GeolocatorPlatform geoLocatorPlatform = GeolocatorPlatform.instance;
 
     if (isCheckPermission) {
-      LocationPermission permission =
-          await geoLocatorPlatform.checkPermission();
+      LocationPermission permission = await geoLocatorPlatform.checkPermission();
 
       if (permission == LocationPermission.denied) {
         permission = await geoLocatorPlatform.requestPermission();
@@ -52,9 +49,7 @@ Future<LatLng?> getCurrentLocation({bool isCheckPermission = true}) async {
       }
     }
 
-    Position location = await geoLocatorPlatform.getCurrentPosition(
-        locationSettings:
-            const LocationSettings(accuracy: LocationAccuracy.high));
+    Position location = await geoLocatorPlatform.getCurrentPosition(locationSettings: const LocationSettings(accuracy: LocationAccuracy.high));
     currentLocation = LatLng(location.latitude, location.longitude);
     return LatLng(location.latitude, location.longitude);
   } catch (e) {
@@ -64,26 +59,25 @@ Future<LatLng?> getCurrentLocation({bool isCheckPermission = true}) async {
   }
 }
 
-Future<AddressDetails?> setUserDefaultLocation({LatLng? selectedLatLng}) async {
-  final latLng = selectedLatLng ?? await getCurrentLocation();
-  if (latLng == null) {
-    userAddress = null;
-    return null;
-  }
+// Future<AddressDetails?> setUserDefaultLocation({LatLng? selectedLatLng}) async {
+//   final latLng = selectedLatLng ?? await getCurrentLocation();
+//   if (latLng == null) {
+//     userAddress = null;
+//     return null;
+//   }
 
-  final address = AddressDetails(addressType: "Home");
-  address.geocoordinates = "${latLng.latitude},${latLng.longitude}";
-  userAddress = await setAddressFromCoordinatesString(address);
+//   final address = AddressDetails(addressType: "Home");
+//   address.geocoordinates = "${latLng.latitude},${latLng.longitude}";
+//   userAddress = await setAddressFromCoordinatesString(address);
 
-  if (userAddress != null) {
-    // SharedPref.save(key: "address", value: userAddress);
-  }
+//   if (userAddress != null) {
+//     // SharedPref.save(key: "address", value: userAddress);
+//   }
 
-  return userAddress;
-}
+//   return userAddress;
+// }
 
-Future<AddressDetails?> setAddressFromCoordinatesString(
-    AddressDetails? address) async {
+Future<AddressDetails?> setAddressFromCoordinatesString(AddressDetails? address) async {
   if (address == null) return address;
 
   final latLng = getLatLngFromString(address.geocoordinates!);
@@ -91,8 +85,7 @@ Future<AddressDetails?> setAddressFromCoordinatesString(
   if (placeMark != null) {
     address.locationName = placeMark.locality;
     address.streetAddress = "${placeMark.street} ${placeMark.postalCode}";
-    address.city =
-        placeMark.subLocality ?? placeMark.locality ?? placeMark.locality;
+    address.city = placeMark.subLocality ?? placeMark.locality ?? placeMark.locality;
     address.district = placeMark.subAdministrativeArea;
     address.state = placeMark.administrativeArea;
   }
@@ -106,8 +99,7 @@ LatLng getLatLngFromString(String coordinateString) {
 
 Future<Placemark?> getAddress({required LatLng location}) async {
   try {
-    List<Placemark> placeMark =
-        await placemarkFromCoordinates(location.latitude, location.longitude);
+    List<Placemark> placeMark = await placemarkFromCoordinates(location.latitude, location.longitude);
 
     return placeMark.first;
   } catch (e) {
@@ -154,8 +146,7 @@ Future<void> makePhoneCall(String number) async {
 //   });
 // }
 
-Future<void> captureAndShareAndDownloadPDF(
-    Uint8List capturedImage, String qouoteName, bool isShare) async {
+Future<void> captureAndShareAndDownloadPDF(Uint8List capturedImage, String qouoteName, bool isShare) async {
   final pdf = pw.Document();
   final image = pw.MemoryImage(capturedImage);
 
@@ -254,10 +245,8 @@ String getFileExtension(String url) {
 
 locationView({String? lat, String? lon}) async {
   debugPrint("Location Debug");
-  String appleUrl =
-      'https://maps.apple.com/?saddr=&daddr=$lat,$lon&directionsmode=driving';
-  String googleUrl =
-      'https://www.google.com/maps/search/?api=1&query=$lat,$lon';
+  String appleUrl = 'https://maps.apple.com/?saddr=&daddr=$lat,$lon&directionsmode=driving';
+  String googleUrl = 'https://www.google.com/maps/search/?api=1&query=$lat,$lon';
 
   Uri appleUri = Uri.parse(appleUrl);
   Uri googleUri = Uri.parse(googleUrl);

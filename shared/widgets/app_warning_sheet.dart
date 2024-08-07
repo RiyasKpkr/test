@@ -1,16 +1,15 @@
-import 'package:cpsales/core/constants.dart';
-import 'package:cpsales/core/extensions/margin_ext.dart';
-import 'package:cpsales/shared/utils/colors.dart';
-import 'package:cpsales/shared/widgets/app_btn.dart';
-import 'package:cpsales/shared/widgets/app_svg.dart';
-import 'package:cpsales/shared/widgets/app_text.dart';
+import 'package:app/core/extensions/margin_ext.dart';
 import 'package:flutter/material.dart';
 import '../../../../core/screen_utils.dart';
+import '../../core/constants.dart';
+import '../utils/colors.dart';
+import 'app_btn.dart';
+import 'app_svg.dart';
+import 'app_text.dart';
 
 class AppWarningSheet extends StatelessWidget {
-  const AppWarningSheet({super.key,  required this.alertMessage,  this.onTap});
+  const AppWarningSheet({super.key, required this.alertMessage, this.onTap});
 
- 
   final String alertMessage;
   final void Function()? onTap;
 
@@ -34,7 +33,7 @@ class AppWarningSheet extends StatelessWidget {
                   child: AppSvg(assetName: "alert"),
                 ),
                 14.wBox,
-                 const AppText(
+                const AppText(
                   "Attention Please!",
                   size: 16,
                   family: inter600,
@@ -43,7 +42,7 @@ class AppWarningSheet extends StatelessWidget {
             ),
             16.hBox,
             RichText(
-                text:  TextSpan(
+                text: TextSpan(
               children: [
                 const TextSpan(
                   text: 'Note: ',
@@ -54,12 +53,8 @@ class AppWarningSheet extends StatelessWidget {
                   ),
                 ),
                 TextSpan(
-                  text:
-                     alertMessage,
-                  style: const TextStyle(
-                      fontSize: 14,
-                      color: primaryGreyClr,
-                      fontFamily: inter400),
+                  text: alertMessage,
+                  style: const TextStyle(fontSize: 14, color: primaryGreyClr, fontFamily: inter400),
                 ),
               ],
             )),
@@ -68,16 +63,9 @@ class AppWarningSheet extends StatelessWidget {
               text: "Yes, Now",
               minHeight: 44,
               onPressed: onTap,
-              ),
-            
+            ),
             12.hBox,
-            AppButton(
-                text: "Cancel",
-                minHeight: 44,
-                isFilledBtn: false,
-                btnClr: gray700Clr,
-                borderSideClr: inputBorderClr,
-                onPressed: () => Screen.closeDialog()),
+            AppButton(text: "Cancel", minHeight: 44, isFilledBtn: false, btnClr: gray700Clr, borderSideClr: inputBorderClr, onPressed: () => Screen.closeDialog()),
           ],
         ),
       ),

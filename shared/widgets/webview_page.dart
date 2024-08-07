@@ -1,6 +1,7 @@
-import 'package:cpsales/core/service/urls.dart';
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
+
+import '../../core/service/urls.dart';
 
 class WebPage extends StatelessWidget {
   const WebPage({super.key, required this.url});

@@ -1,12 +1,12 @@
 import 'dart:async';
 
-import 'package:cpsales/core/constants.dart';
-import 'package:cpsales/shared/utils/colors.dart';
-import 'package:cpsales/shared/widgets/app_lottie.dart';
-import 'package:cpsales/shared/widgets/app_text.dart';
 import 'package:flutter/material.dart';
 
+import '../../core/constants.dart';
 import '../../core/screen_utils.dart';
+import '../../shared/utils/colors.dart';
+import '../../shared/widgets/app_lottie.dart';
+import '../../shared/widgets/app_text.dart';
 
 class AppSuccessBottomSheet extends StatelessWidget {
   const AppSuccessBottomSheet({super.key, required this.successText});
