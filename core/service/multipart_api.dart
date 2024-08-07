@@ -1,13 +1,14 @@
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:cpsales/core/config.dart';
-import 'package:cpsales/core/screen_utils.dart';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
 import '../../shared/dialog/app_snackbar.dart';
+import '../config.dart';
+import '../screen_utils.dart';
 import 'api.dart';
 import 'api_response.dart';
 import 'urls.dart';

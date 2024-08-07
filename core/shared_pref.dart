@@ -3,7 +3,6 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 
 import '../core/config.dart';
-import '../core/screen_utils.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../shared/push_notification/push_notification.dart';
