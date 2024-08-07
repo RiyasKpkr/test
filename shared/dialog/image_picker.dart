@@ -1,4 +1,3 @@
-import 'package:cpsales/shared/utils/colors.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -12,7 +11,6 @@ import '../../core/extensions/margin_ext.dart';
 import '../../core/screen_utils.dart';
 import '../widgets/app_svg.dart';
 import '../widgets/app_text.dart';
-import 'app_snackbar.dart';
 
 Future<String?>? showImagePicker() async {
   String? path;

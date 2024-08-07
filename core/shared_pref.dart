@@ -6,14 +6,12 @@ import '../core/config.dart';
 import '../core/screen_utils.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../app/view/login/login_screen.dart';
 import '../shared/push_notification/push_notification.dart';
 
 class SharedPref {
   SharedPreferences? sharedPref;
 
-  Future<SharedPreferences> get _instance async =>
-      sharedPref ??= await SharedPreferences.getInstance();
+  Future<SharedPreferences> get _instance async => sharedPref ??= await SharedPreferences.getInstance();
 
   Future<SharedPreferences> init() async {
     sharedPref = await _instance;
@@ -46,6 +44,6 @@ class SharedPref {
     if (sharedPref == null) await init();
     sharedPref!.clear();
     notificationCounterValueNotifer = ValueNotifier(0);
-    Screen.openAsNewPage(const LoginScreen());
+    // Screen.openAsNewPage(const LoginScreen());
   }
 }
