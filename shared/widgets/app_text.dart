@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+
+import '../utils/colors.dart';
+
 class AppText extends StatelessWidget {
   const AppText(this.text,
       {super.key,
-      this.color,
+      this.color = primaryBlackClr,
       this.decorationColor,
       this.size = 14,
       this.align,
@@ -17,7 +20,7 @@ class AppText extends StatelessWidget {
 
   const AppText.click(this.text,
       {super.key,
-      this.color,
+      this.color = primaryBlackClr,
       this.decorationColor,
       this.size = 14,
       this.align,
@@ -66,7 +69,7 @@ class AppText extends StatelessWidget {
                 fontFamily: family,
                 height: height,
                 decorationColor: decorationColor,
-                decoration: isShowUnderline ? TextDecoration.underline: null),
+                decoration: isShowUnderline ? TextDecoration.underline : null),
         textAlign: align);
   }
 }
